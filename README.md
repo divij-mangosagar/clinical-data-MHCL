@@ -1,34 +1,60 @@
-# clinical_data_MHCL
-A manual statistical analysis on a clinical dataset of patients (https://shorturl.at/XRWwW) to help reinforce statistical concepts. Done in python. 
-WARNING: This code is inefficient and overly computationally heavy (the actual MLE and coeff CI code) due to an inefficient use of for loops and sympy library. 
-Experimented with 2 main inferential analysis methods:
-Hypothesis tests: cmh (Cochran-Mantel-Haenszel test), chi-squared test
-, and Binary logistic regression model, bernoullis distribution: MLE manual implementation (gradient ascent) and coefficient CI (hessian matrix) => using to estimate 
-bernoullis pi_n parameter 
-.This project was very fun and I definetely enjoyed doing it! There are clear inaccuracies and inefficiencies; however, it helped me reinforce concepts and 
-helped me grow my skills for future projects. :) 
-* Will try to see if I can expand later on *
+# Manual Statistical Analysis on Clinical Dataset
 
-  
-My Log:
+**Dataset:** [Clinical patient dataset](https://shorturl.at/XRWwW)  
+**Language:** Python
 
-'''
+---
 
-1) Cleaned data by removing all -9(unidentified/bad) diagnosis from mh1, mh2, mh3 => stored in list
-2) Found frequency for each diagnosis => matched w/ data 
-3) Did the pearson's-r test (used method) to see which data had association
-    4) Bipolar disorder and other(unspecified) disorder failed Ho at alpha = 0.05 (significant association)
+## Overview
 
-5) Doing chi-squared test for bipolar disorder  => FAILED CONDITION NOT SATISFIED
+This repository contains a manual, hands-on statistical analysis of a clinical dataset of patients, aimed at reinforcing statistical concepts. The code is intentionally written in a way that exposes the underlying mechanics, using direct implementations rather than relying on high-level libraries. **WARNING:** The MLE and coefficient CI code is inefficient and computationally heavy, primarily due to the use of for-loops and the sympy library.
 
-7) Regression model + ci
-    a) Binary Logistic Model => probability of bpd diagnosis during second diagnosis period given previous diagnosis + patient info
+Despite the inefficiencies and some inaccuracies, this project was a valuable learning experience, helping me grow my practical and theoretical statistical skills. I thoroughly enjoyed working on it!
 
-8) chi-squared => did a different contingent table to ensure independence 
-    a) Bipolar Disorder => Number of bpd diagnosis vs variables
+*I plan to expand and refine this analysis in the future.*
 
-9) CHM test
-    a) SMI/SED vs Substance Abuse strata by diagnosis
-    b) Substance Abuse vs Employment strata by SMI/SED
-   
-'''
+---
+
+## Methods Used
+
+- **Data Cleaning:**  
+  - Removed all `-9` (unidentified/bad) diagnoses from `mh1`, `mh2`, and `mh3`, storing valid entries in a list.
+
+- **Descriptive Statistics:**  
+  - Calculated frequencies for each diagnosis and matched them with the cleaned data.
+
+- **Inferential Statistics:**  
+  - **Pearson’s r:**  
+    - Tested associations between variables. Found a significant association between Bipolar Disorder and "Other (unspecified)" disorder (null hypothesis rejected at α = 0.05).
+  - **Chi-Squared Test:**  
+    - Attempted for Bipolar Disorder, but the test conditions were not satisfied for all comparisons.
+    - Performed on alternate contingency tables to ensure independence, e.g., BPD diagnosis vs. other variables.
+  - **Binary Logistic Regression:**  
+    - Built a model to predict the probability of a BPD diagnosis in the second diagnosis period based on previous diagnosis and patient information.
+    - Manually implemented MLE for Bernoulli’s πₙ parameter using gradient ascent.
+    - Calculated coefficient confidence intervals using the Hessian matrix.
+  - **Cochran-Mantel-Haenszel (CMH) Test:**  
+    - Compared SMI/SED vs. Substance Abuse strata by diagnosis.
+    - Examined Substance Abuse vs. Employment strata by SMI/SED.
+
+---
+
+## Log
+
+- Cleaned data by removing all `-9` (unidentified/bad) diagnoses from `mh1`, `mh2`, `mh3`.
+- Found frequency counts for each diagnosis.
+- Performed Pearson’s r test for associations; found significant association for Bipolar Disorder and "Other (unspecified)" disorder (α = 0.05).
+- Attempted chi-squared test for Bipolar Disorder, but conditions were not satisfied.
+- Built a binary logistic regression model to estimate probability of BPD diagnosis in the second period, given patient info and past diagnosis.
+- Used alternate contingency tables for chi-squared tests to ensure variable independence.
+- Ran CMH tests for:
+    - SMI/SED vs. Substance Abuse (stratified by diagnosis)
+    - Substance Abuse vs. Employment (stratified by SMI/SED)
+
+---
+
+## Reflections
+
+This project is intentionally “manual” and not optimized, but it was very fun and a great way to reinforce statistical concepts. There are clear inefficiencies and likely some inaccuracies, but every challenge was a learning opportunity. I look forward to refining and expanding this project in the future! :)
+
+---
